@@ -1,0 +1,17 @@
+<mat-toolbar class="navbar" color="primary">
+  <h1 class="navbar-title not-selectable-text">HOOLY</h1>
+</mat-toolbar>
+
+<div class="navbar-container">
+  <nav mat-tab-nav-bar [tabPanel]="tabPanel">
+    <a
+      mat-tab-link
+      *ngFor="let link of links"
+      (click)="handleNavigationClick(link)"
+      [active]="activeLink === link.label"
+    >
+      {{ link.label }}
+    </a>
+  </nav>
+  <mat-tab-nav-panel #tabPanel></mat-tab-nav-panel>
+</div>

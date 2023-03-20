@@ -1,0 +1,29 @@
+@import "../../themevars";
+@import url("https://fonts.googleapis.com/css2?family=Itim&display=swap");
+
+.navbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+  box-shadow: $box-shadow;
+
+  &-container {
+    display: flex;
+    margin: 1rem;
+    justify-content: center;
+  }
+
+  &-title {
+    font-size: 2rem;
+    font-family: "Itim", cursive;
+  }
+}
+
+// TODO: Media query for mobile / Observer checking size
+.mat-mdc-tab-nav-bar {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex: 0.5 !important;
+}
