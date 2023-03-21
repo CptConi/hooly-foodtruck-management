@@ -15,8 +15,9 @@ import { HeaderComponent } from './components/header/header.component';
     BrowserModule,
     AppRoutingModule,
     RouterModule,
-    MatToolbarModule,
     BrowserAnimationsModule,
+    // Material
+    MatToolbarModule,
     MatTabsModule,
   ],
   providers: [],

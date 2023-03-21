@@ -193,3 +193,10 @@ body {
   user-select: none; /* Non-prefixed version, currently
                         supported by Chrome and Opera */
 }
+
+@mixin flex-center($direction: row) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: center;
+  align-items: center;
+}

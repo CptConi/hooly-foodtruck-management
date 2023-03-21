@@ -10,7 +10,7 @@ import { NavigationService } from 'src/app/services/navigation.service';
 export class HeaderComponent {
   constructor(private navigationService: NavigationService) {}
 
-  public activeLink: string = 'Réservations';
+  public activeLink = 'Réservations';
   public links: NavLink[] = [
     { label: 'Réservations', path: '/reservations' },
     { label: 'Foodtrucks', path: '/foodtrucks' },

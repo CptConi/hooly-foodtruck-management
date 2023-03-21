@@ -1,0 +1,16 @@
+@use "../../../styles.scss" as style;
+@import "../../themevars";
+
+.list {
+  &-container {
+    margin: 4rem 10rem;
+    border: $border-color solid 1px;
+    border-radius: $border-radius-container;
+  }
+
+  &-header {
+    @include style.flex-center;
+    margin: 2rem;
+    font-size: $font-size-subtitle;
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "name": "Nom",
+  "description": "Description",
+  "image": "Image",
+  "rating": "Note",
+  "foodType": "Type de cuisine"
+}
