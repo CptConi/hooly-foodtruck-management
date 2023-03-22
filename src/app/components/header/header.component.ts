@@ -17,8 +17,7 @@ export class HeaderComponent implements OnInit {
   ];
 
   ngOnInit(): void {
-    this.navigationService.routerEvents$.subscribe((event) => {
-      console.log(`event:`, event);
+    this.navigationService.routerEvents$.subscribe((_) => {
       this.activeLink = this.navigationService.location.includes('reservations')
         ? 'Réservations'
         : 'Foodtrucks';
