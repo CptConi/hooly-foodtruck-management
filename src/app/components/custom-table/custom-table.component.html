@@ -4,14 +4,30 @@
       <mat-header-cell *matHeaderCellDef>
         {{ column | humanize }}
       </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{ element[column] }} </mat-cell>
+      <mat-cell *matCellDef="let element">
+        <ng-container [ngSwitch]="column">
+          <ng-container *ngSwitchCase="'image'">
+            <img
+              class="table-thumbnail"
+              [src]="element[column]"
+              alt="food truck image"
+            />
+          </ng-container>
+          <ng-container *ngSwitchCase="'name'">
+            <span class="text-important">{{ element[column] }}</span>
+          </ng-container>
+          <ng-container *ngSwitchCase="'foodType'">
+            <span class="text-important">{{ element[column] }}</span>
+          </ng-container>
+          <ng-container *ngSwitchDefault>
+            <span>{{ element[column] }}</span>
+          </ng-container>
+        </ng-container>
+      </mat-cell>
     </ng-container>
 
     <mat-header-row *matHeaderRowDef="columns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: columns"></mat-row>
   </mat-table>
-  <mat-paginator
-    [pageSizeOptions]="paginationOptions"
-    showFirstLastButtons
-  ></mat-paginator>
+  <mat-paginator [pageSizeOptions]="paginationOptions"></mat-paginator>
 </div>

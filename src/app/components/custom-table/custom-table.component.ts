@@ -1,7 +1,6 @@
 import { AfterViewInit, Component, Input, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { HumanizeService } from 'src/app/services/humanize.service';
 
 @Component({
   selector: 'app-custom-table',
@@ -24,15 +23,18 @@ export class CustomTableComponent implements AfterViewInit {
   }
 
   get columns(): string[] {
-    return this.data ? this.filterColumns(Object.keys(this.data[0])) : [];
+    return this.data
+      ? this.sortColumns(this.filterColumns(Object.keys(this.data[0])))
+      : [];
   }
 
   @Input() paginationOptions: number[] = [5, 10, 25, 100];
-  @Input() defaultPageSize: number = 10;
+  @Input() set defaultPageSize(value: number) {
+    if (!this._dataSource.paginator) return;
+    this._dataSource.paginator.pageSize = value;
+  }
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-
-  constructor(private humanizeService: HumanizeService) {}
 
   ngAfterViewInit() {
     this.bindPaginator();
@@ -44,6 +46,46 @@ export class CustomTableComponent implements AfterViewInit {
 
   private bindPaginator() {
     this._dataSource.paginator = this.paginator;
-    this._dataSource.paginator.pageSize = this.defaultPageSize;
+  }
+
+  /**
+   * Will sort columns to always have image, name and description at the beginning and rating at the end
+   */
+  private sortColumns(columns: string[]): string[] {
+    const sortedColumns: string[] = [];
+
+    // Ajouter "image" en premier si présent dans le tableau
+    if (columns.includes('image')) {
+      sortedColumns.push('image');
+    }
+
+    // Ajouter "name" en deuxième si présent dans le tableau
+    if (columns.includes('name')) {
+      sortedColumns.push('name');
+    }
+
+    // Ajouter "description" en troisième si présent dans le tableau
+    if (columns.includes('description')) {
+      sortedColumns.push('description');
+    }
+
+    // Ajouter les autres colonnes dans l'ordre où elles apparaissent dans le tableau
+    for (const col of columns) {
+      if (
+        col !== 'image' &&
+        col !== 'name' &&
+        col !== 'description' &&
+        col !== 'rating'
+      ) {
+        sortedColumns.push(col);
+      }
+    }
+
+    // Ajouter "rating" en dernier si présent dans le tableau
+    if (columns.includes('rating')) {
+      sortedColumns.push('rating');
+    }
+
+    return sortedColumns;
   }
 }

@@ -1,4 +1,4 @@
-// All the variables of the theme are defined here
+// All the variables used inside app are defined here
 
 // Colors
 $border-color: #e0e0e0;
@@ -13,3 +13,8 @@ $box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14),
 
 // Layout
 $border-radius-container: 8px;
+
+// Screens sizes
+$screen-size-mobile: 768px;
+$screen-size-tablet: 1024px;
+$screen-size-desktop: 1280px;

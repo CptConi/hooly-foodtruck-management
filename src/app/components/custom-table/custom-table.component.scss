@@ -1,9 +1,23 @@
-@import "../../themevars";
+@import "../../vars";
 
-.table-container {
-  margin: 3rem;
-  padding: 1rem;
+.table {
+  &-container {
+    margin: 3rem;
+    padding: 1rem;
 
-  box-shadow: $box-shadow;
-  border-radius: $border-radius-container;
+    min-width: 600px;
+
+    box-shadow: $box-shadow;
+    border-radius: $border-radius-container;
+
+    overflow: auto;
+  }
+
+  &-thumbnail {
+    aspect-ratio: auto;
+    max-width: 100%;
+    object-fit: contain;
+    margin: 4px;
+    border-radius: 4px;
+  }
 }
