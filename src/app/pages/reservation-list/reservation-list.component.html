@@ -1,12 +1,6 @@
-<!-- TODO refactoring containers with templates -->
-<div class="list-container">
-  <div class="list-header">
-    <h2>Liste des réservations</h2>
-  </div>
-
-  <app-custom-table
-    [data]="reservations"
-    [paginationOptions]="[5, 15, 25, 50, 100]"
-    [defaultPageSize]="15"
-  ></app-custom-table>
-</div>
+<app-generic-list-page
+  [title]="'Liste des Réservations'"
+  [dataSource]="reservations"
+  [paginationOptions]="[5, 15, 25, 50, 100]"
+  [defaultPageSize]="15"
+></app-generic-list-page>

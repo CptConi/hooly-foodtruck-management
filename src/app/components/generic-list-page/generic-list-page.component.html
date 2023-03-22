@@ -1,0 +1,11 @@
+<div class="list-container">
+  <div class="list-header">
+    <h2>{{ title }}</h2>
+  </div>
+
+  <app-custom-table
+    [data]="dataSource"
+    [paginationOptions]="paginationOptions"
+    [defaultPageSize]="defaultPageSize"
+  ></app-custom-table>
+</div>
