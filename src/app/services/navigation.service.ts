@@ -1,13 +1,27 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
+import { filter } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class NavigationService {
-  constructor(private _router: Router) {}
+  constructor(private router: Router) {}
+
+  public get location() {
+    return this.router.url;
+  }
 
   public navigateTo = (path: string) => {
-    this._router.navigate([path]);
+    this.router.navigate([path]);
   };
+
+  public doesUrlContains = (path: string) => {
+    console.log(this.router.url);
+    return this.router.url.includes(path);
+  };
+
+  public routerEvents$ = this.router.events.pipe(
+    filter((event) => event instanceof NavigationEnd)
+  );
 }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NavLink } from 'src/app/models/navlink.model';
 import { NavigationService } from 'src/app/services/navigation.service';
 
@@ -7,7 +7,7 @@ import { NavigationService } from 'src/app/services/navigation.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
   constructor(private navigationService: NavigationService) {}
 
   public activeLink = 'Réservations';
@@ -16,8 +16,16 @@ export class HeaderComponent {
     { label: 'Foodtrucks', path: '/foodtrucks' },
   ];
 
+  ngOnInit(): void {
+    this.navigationService.routerEvents$.subscribe((event) => {
+      console.log(`event:`, event);
+      this.activeLink = this.navigationService.location.includes('reservations')
+        ? 'Réservations'
+        : 'Foodtrucks';
+    });
+  }
+
   public handleNavigationClick = ($event: NavLink) => {
-    this.activeLink = $event.label;
     this.navigationService.navigateTo($event.path);
   };
 }

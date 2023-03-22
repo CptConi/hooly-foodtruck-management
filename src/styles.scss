@@ -183,6 +183,22 @@ body {
   height: 100%;
 }
 
+// Scrollbar customization
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+  background-color: #f5f5f5;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #607d8b;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #455a64;
+}
+
 /*--------------------------- MISC ---------------------------*/
 
 .not-selectable-text {
@@ -192,6 +208,10 @@ body {
   -ms-user-select: none; /* Internet Explorer/Edge */
   user-select: none; /* Non-prefixed version, currently
                         supported by Chrome and Opera */
+}
+
+.flex {
+  display: flex;
 }
 
 @mixin flex-center($direction: row) {

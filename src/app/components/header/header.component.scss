@@ -4,12 +4,22 @@
 
 .header {
   @include style.flex-center;
+  position: relative;
+  overflow: hidden;
+
   box-shadow: $box-shadow;
+
+  &-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
 
   &-title {
     font-size: $font-size-title;
     font-family: "Itim", cursive;
   }
+
   &-foodtruck {
     position: absolute;
     height: 4rem;
@@ -37,6 +47,12 @@
 .mat-mdc-tab-nav-bar {
   @include style.flex-center;
   flex: 0.5 !important;
+}
+
+@media screen and (max-width: $screen-size-mobile) {
+  .mat-mdc-tab-nav-bar {
+    flex: 1 !important;
+  }
 }
 
 @keyframes running-foodtruck {
