@@ -19,6 +19,9 @@
           <ng-container *ngSwitchCase="'foodType'">
             <span class="text-important">{{ element[column] }}</span>
           </ng-container>
+          <ng-container *ngSwitchCase="'date'">
+            <span>{{ element[column] | date : "dd-MM-yyyy hh:mm" }}</span>
+          </ng-container>
           <ng-container *ngSwitchDefault>
             <span>{{ element[column] }}</span>
           </ng-container>

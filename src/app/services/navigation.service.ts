@@ -17,7 +17,6 @@ export class NavigationService {
   };
 
   public doesUrlContains = (path: string) => {
-    console.log(this.router.url);
     return this.router.url.includes(path);
   };
 

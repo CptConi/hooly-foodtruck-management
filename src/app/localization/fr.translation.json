@@ -3,5 +3,9 @@
   "description": "Description",
   "image": "Image",
   "rating": "Note",
-  "foodType": "Type de cuisine"
+  "foodType": "Type de cuisine",
+  "date": "Date",
+  "location": "Localisation",
+  "duration": "Durée",
+  "foodTruck": "Food Truck"
 }

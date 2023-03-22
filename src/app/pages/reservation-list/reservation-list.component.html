@@ -1,1 +1,12 @@
-<p>reservation-list works!</p>
+<!-- TODO refactoring containers with templates -->
+<div class="list-container">
+  <div class="list-header">
+    <h2>Liste des réservations</h2>
+  </div>
+
+  <app-custom-table
+    [data]="reservations"
+    [paginationOptions]="[5, 15, 25, 50, 100]"
+    [defaultPageSize]="15"
+  ></app-custom-table>
+</div>
