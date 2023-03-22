@@ -2,18 +2,34 @@
 @import "../../vars";
 @import url("https://fonts.googleapis.com/css2?family=Itim&display=swap");
 
-.navbar {
+.header {
   @include style.flex-center;
   box-shadow: $box-shadow;
-
-  &-container {
-    @include style.flex-center;
-    margin: 1rem;
-  }
 
   &-title {
     font-size: $font-size-title;
     font-family: "Itim", cursive;
+  }
+  &-foodtruck {
+    position: absolute;
+    height: 4rem;
+    width: 4rem;
+    left: -5rem;
+    animation: running-foodtruck infinite 20s linear 0s;
+
+    &-svg {
+      mix-blend-mode: soft-light;
+      filter: grayscale(100%);
+      animation: shake 0.2s linear infinite;
+    }
+  }
+}
+
+.navbar {
+  &-container {
+    display: flex;
+    justify-content: center;
+    margin: 1rem;
   }
 }
 
@@ -21,4 +37,31 @@
 .mat-mdc-tab-nav-bar {
   @include style.flex-center;
   flex: 0.5 !important;
+}
+
+@keyframes running-foodtruck {
+  0% {
+    left: -5rem;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+@keyframes shake {
+  0% {
+    transform: translateX(-1px) rotate(0);
+  }
+  25% {
+    transform: translateX(-2px) rotate(-1deg);
+  }
+  50% {
+    transform: translateX(2px) rotate(2deg);
+  }
+  75% {
+    transform: translateX(-2px) rotate(-2deg);
+  }
+  100% {
+    transform: translateX(2px) rotate(0);
+  }
 }
