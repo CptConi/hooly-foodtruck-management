@@ -8,7 +8,7 @@ import { FoodtruckService } from 'src/app/services/foodtruck.service';
   styleUrls: ['./foodtruck-list.component.scss'],
 })
 export class FoodtruckListComponent implements OnInit {
-  public foodTrucks: FoodTruck[] = [];
+  public foodTrucks: FoodTruck[] | undefined = undefined;
 
   constructor(private foodTruckService: FoodtruckService) {}
 

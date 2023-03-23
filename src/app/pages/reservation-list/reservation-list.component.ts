@@ -8,7 +8,7 @@ import { ReservationService } from 'src/app/services/reservation.service';
   styleUrls: ['./reservation-list.component.scss'],
 })
 export class ReservationListComponent implements OnInit {
-  public reservations: Reservation[] = [];
+  public reservations: Reservation[] | undefined = undefined;
 
   constructor(private reservationService: ReservationService) {}
 
