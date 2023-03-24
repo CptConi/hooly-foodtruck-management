@@ -19,11 +19,11 @@ export class CustomTableComponent implements AfterViewInit {
     this._dataSource = new MatTableDataSource<any>(value);
   }
   get data(): any[] {
-    return this._dataSource.data;
+    return this._dataSource.data || [];
   }
 
   get columns(): string[] {
-    return this.data
+    return this.data.length
       ? this.sortColumns(this.filterColumns(Object.keys(this.data[0])))
       : [];
   }
@@ -54,22 +54,18 @@ export class CustomTableComponent implements AfterViewInit {
   private sortColumns(columns: string[]): string[] {
     const sortedColumns: string[] = [];
 
-    // Ajouter "image" en premier si présent dans le tableau
     if (columns.includes('image')) {
       sortedColumns.push('image');
     }
 
-    // Ajouter "name" en deuxième si présent dans le tableau
     if (columns.includes('name')) {
       sortedColumns.push('name');
     }
 
-    // Ajouter "description" en troisième si présent dans le tableau
     if (columns.includes('description')) {
       sortedColumns.push('description');
     }
 
-    // Ajouter les autres colonnes dans l'ordre où elles apparaissent dans le tableau
     for (const col of columns) {
       if (
         col !== 'image' &&
@@ -80,8 +76,6 @@ export class CustomTableComponent implements AfterViewInit {
         sortedColumns.push(col);
       }
     }
-
-    // Ajouter "rating" en dernier si présent dans le tableau
     if (columns.includes('rating')) {
       sortedColumns.push('rating');
     }

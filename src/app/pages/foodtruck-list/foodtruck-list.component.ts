@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 import { FoodTruck } from 'src/app/models/foodtruck.model';
-import { FoodtruckService } from 'src/app/services/foodtruck.service';
+import { GetAllFoodTrucks } from 'src/app/store/actions/foodTruck.actions';
+import { AppState } from 'src/app/store/app.state';
+import { selectAllFoodTrucks } from 'src/app/store/selectors/foodTruck.selectors';
 
 @Component({
   selector: 'app-foodtruck-list',
@@ -8,13 +12,14 @@ import { FoodtruckService } from 'src/app/services/foodtruck.service';
   styleUrls: ['./foodtruck-list.component.scss'],
 })
 export class FoodtruckListComponent implements OnInit {
-  public foodTrucks: FoodTruck[] | undefined = undefined;
+  public foodTrucks$!: Observable<FoodTruck[]>;
 
-  constructor(private foodTruckService: FoodtruckService) {}
+  public Array = Array;
+
+  constructor(private store: Store<AppState>) {}
 
   ngOnInit(): void {
-    this.foodTruckService.getAll().subscribe((foodTrucks) => {
-      this.foodTrucks = foodTrucks;
-    });
+    this.store.dispatch(GetAllFoodTrucks());
+    this.foodTrucks$ = this.store.select(selectAllFoodTrucks);
   }
 }

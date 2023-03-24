@@ -6,7 +6,7 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./generic-list-page.component.scss'],
 })
 export class GenericListPageComponent {
-  @Input() public dataSource: any[] | undefined = [];
+  @Input() public dataSource: any[] | null = [];
   @Input() public title: string = '';
   @Input() public paginationOptions: number[] = [];
   @Input() public defaultPageSize: number = 10;
