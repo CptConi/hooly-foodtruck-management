@@ -3,4 +3,18 @@
   [dataSource]="foodTrucks$ | async"
   [paginationOptions]="[5, 15, 25, 50, 100]"
   [defaultPageSize]="15"
-></app-generic-list-page>
+>
+  <button
+    *ngIf="!isFormVisible"
+    mat-fab
+    color="primary"
+    class="list-add-button"
+    matTooltip="Ajouter un food truck"
+    (click)="handleAddButtonClick()"
+  >
+    <mat-icon>add</mat-icon>
+  </button>
+  <ng-container *ngIf="isFormVisible"
+    ><app-foodtruck-form></app-foodtruck-form
+  ></ng-container>
+</app-generic-list-page>

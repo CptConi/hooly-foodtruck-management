@@ -1,0 +1,39 @@
+<form [formGroup]="foodtruckForm" (ngSubmit)="onSubmit()">
+  <span>Ajouter un Food truck:</span>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Nom *</mat-label>
+    <input matInput formControlName="name" required />
+    <mat-error *ngIf="foodtruckForm.controls['name'].hasError('required')"
+      >Le nom est obligatoire</mat-error
+    >
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Description</mat-label>
+    <input matInput formControlName="description" />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>URL d'image</mat-label>
+    <input matInput formControlName="imageUrl" />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Type de nourriture</mat-label>
+    <mat-select formControlName="foodType">
+      <mat-option *ngFor="let type of foodTypes" [value]="type">{{
+        type
+      }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <button
+    mat-flat-button
+    color="primary"
+    [disabled]="foodtruckForm.invalid"
+    type="submit"
+  >
+    À table !
+  </button>
+</form>

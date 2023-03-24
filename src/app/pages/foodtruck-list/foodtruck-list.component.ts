@@ -13,6 +13,7 @@ import { selectAllFoodTrucks } from 'src/app/store/selectors/foodTruck.selectors
 })
 export class FoodtruckListComponent implements OnInit {
   public foodTrucks$!: Observable<FoodTruck[]>;
+  public isFormVisible = true;
 
   public Array = Array;
 
@@ -21,5 +22,9 @@ export class FoodtruckListComponent implements OnInit {
   ngOnInit(): void {
     this.store.dispatch(GetAllFoodTrucks());
     this.foodTrucks$ = this.store.select(selectAllFoodTrucks);
+  }
+
+  public handleAddButtonClick() {
+    this.isFormVisible = true;
   }
 }
