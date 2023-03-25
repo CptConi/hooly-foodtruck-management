@@ -6,7 +6,7 @@
   "foodType": "Type de cuisine",
   "date": "Date",
   "location": "Localisation",
-  "duration": "Durée",
+  "meal": "Repas",
   "foodTruck": "Food Truck",
   "ALLDAY": "Toute la journée",
   "BREAKFAST": "Petit déjeuner",

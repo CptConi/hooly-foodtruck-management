@@ -3,7 +3,10 @@ import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable, tap } from 'rxjs';
 import { FoodTruck } from '../models/foodtruck.model';
-import { GetAllFoodTrucksSuccess } from '../store/actions/foodTruck.actions';
+import {
+  AddFoodTruck,
+  GetAllFoodTrucksSuccess,
+} from '../store/actions/foodTruck.actions';
 import { FoodTruckState } from '../store/reducers/foodTruck.reducer';
 
 @Injectable({
@@ -14,11 +17,21 @@ export class FoodTruckService {
 
   constructor(private http: HttpClient, private store: Store<FoodTruckState>) {}
 
-  getAllFoodTrucks(): Observable<FoodTruck[]> {
+  public getAllFoodTrucks(): Observable<FoodTruck[]> {
     return this.http.get<FoodTruck[]>(`${this.apiURL}/foodTrucks`).pipe(
       tap((foodTrucks) => {
         this.store.dispatch(GetAllFoodTrucksSuccess(foodTrucks));
       })
     );
+  }
+
+  public addFoodTruck(foodTruck: FoodTruck): Observable<FoodTruck> {
+    return this.http
+      .post<FoodTruck>(`${this.apiURL}/foodTrucks`, foodTruck)
+      .pipe(
+        tap((addedFoodTruck) => {
+          this.store.dispatch(AddFoodTruck(addedFoodTruck));
+        })
+      );
   }
 }

@@ -1,4 +1,4 @@
-enum ReservationDurationType {
+enum MealType {
   ALLDAY = 'ALLDAY',
   BREAKFAST = 'BREAKFAST',
   LUNCH = 'LUNCH',
@@ -6,4 +6,4 @@ enum ReservationDurationType {
   DINNER = 'DINNER',
 }
 
-export default ReservationDurationType;
+export default MealType;

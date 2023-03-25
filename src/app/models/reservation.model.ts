@@ -1,7 +1,10 @@
+import MealType from '../enums/mealType';
+import { FoodTruck } from './foodtruck.model';
+
 export interface Reservation {
   id: number;
   date: Date;
   location: string;
-  duration: number;
-  foodTruckId: number;
+  meal: MealType;
+  foodTruck?: FoodTruck;
 }

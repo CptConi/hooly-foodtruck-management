@@ -16,7 +16,12 @@
 
   <mat-form-field appearance="outline">
     <mat-label>On mange quand ?</mat-label>
-    <input matInput [matDatepicker]="picker" />
+    <input
+      matInput
+      [matDatepicker]="picker"
+      [min]="today"
+      formControlName="date"
+    />
     <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-datepicker #picker></mat-datepicker>
   </mat-form-field>
@@ -26,7 +31,7 @@
     <input matInput formControlName="location" />
   </mat-form-field>
 
-  <mat-radio-group color="primary" formControlName="duration">
+  <mat-radio-group color="primary" formControlName="meal">
     <mat-radio-button
       class="example-radio-button"
       *ngFor="let rsd of reservationDurationKeys"

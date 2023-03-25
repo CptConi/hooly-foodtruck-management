@@ -22,6 +22,12 @@
           <ng-container *ngSwitchCase="'date'">
             <span>{{ element[column] | date : "dd-MM-yyyy hh:mm" }}</span>
           </ng-container>
+          <ng-container *ngSwitchCase="'meal'">
+            <span>{{ element[column] | humanize }}</span>
+          </ng-container>
+          <ng-container *ngSwitchCase="'foodTruck'">
+            <span>{{ element[column].name }}</span>
+          </ng-container>
           <ng-container *ngSwitchDefault>
             <span>{{ element[column] }}</span>
           </ng-container>

@@ -1,9 +1,12 @@
 import { createReducer, on } from '@ngrx/store';
-import { Reservation } from 'src/app/models/reservation.model';
-import { GetAllReservationsSuccess } from '../actions/reservation.actions';
+import { ReservationDTO } from 'src/app/models/DTOs/reservationDTO.model';
+import {
+  AddReservation,
+  GetAllReservationsSuccess,
+} from '../actions/reservation.actions';
 
 export interface ReservationState {
-  readonly reservations: Reservation[];
+  readonly reservations: ReservationDTO[];
   readonly error: string;
 }
 
@@ -18,6 +21,13 @@ export const reservationReducer = createReducer(
     return {
       ...state,
       reservations: reservations,
+      error: 'Modified',
+    };
+  }),
+  on(AddReservation, (state, { reservation }) => {
+    return {
+      ...state,
+      reservations: [...state.reservations, reservation],
       error: 'Modified',
     };
   })

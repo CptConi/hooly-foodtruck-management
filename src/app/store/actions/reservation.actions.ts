@@ -1,5 +1,5 @@
 import { createAction } from '@ngrx/store';
-import { Reservation } from 'src/app/models/reservation.model';
+import { ReservationDTO } from 'src/app/models/DTOs/reservationDTO.model';
 
 export const GetAllReservations = createAction(
   '[Reservation] Get All Reservations'
@@ -7,5 +7,10 @@ export const GetAllReservations = createAction(
 
 export const GetAllReservationsSuccess = createAction(
   '[Reservation] Get All Reservations Success',
-  (reservations: Reservation[]) => ({ reservations })
+  (reservations: ReservationDTO[]) => ({ reservations })
+);
+
+export const AddReservation = createAction(
+  '[Reservations] Add Reservation',
+  (reservation: ReservationDTO) => ({ reservation })
 );

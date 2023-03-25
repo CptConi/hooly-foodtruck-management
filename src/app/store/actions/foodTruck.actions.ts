@@ -9,3 +9,8 @@ export const GetAllFoodTrucksSuccess = createAction(
   '[Food Truck] Get All Food Trucks Success',
   (foodTrucks: FoodTruck[]) => ({ foodTrucks })
 );
+
+export const AddFoodTruck = createAction(
+  '[Food Truck] Add Food Truck',
+  (foodTruck: FoodTruck) => ({ foodTruck })
+);

@@ -3,8 +3,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
-import ReservationDurationType from 'src/app/enums/reservationDurationType.enums';
+import MealType from 'src/app/enums/mealType';
 import { FoodTruck } from 'src/app/models/foodtruck.model';
+import { ReservationService } from 'src/app/services/reservation.service';
 import { toasterGlobalOptions } from 'src/app/settings/toastr.config';
 import { AppState } from 'src/app/store/app.state';
 import { selectAllFoodTrucks } from 'src/app/store/selectors/foodTruck.selectors';
@@ -18,14 +19,15 @@ import { selectAllFoodTrucks } from 'src/app/store/selectors/foodTruck.selectors
 export class ReservationFormComponent {
   public reservationForm: FormGroup = new FormGroup({});
   public foodTrucks$!: Observable<FoodTruck[]>;
-  public reservationDurationKeys = Object.keys(ReservationDurationType);
+  public reservationDurationKeys = Object.keys(MealType);
 
   @Output() hideForm: EventEmitter<boolean> = new EventEmitter();
 
   constructor(
     private store: Store<AppState>,
     private formBuilder: FormBuilder,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private reservationService: ReservationService
   ) {
     this.foodTrucks$ = this.store.select(selectAllFoodTrucks);
 
@@ -33,8 +35,12 @@ export class ReservationFormComponent {
       foodTruckId: ['', Validators.required],
       date: ['', Validators.required],
       location: ['', Validators.required],
-      duration: ['', Validators.required],
+      meal: ['', Validators.required],
     });
+  }
+
+  get today() {
+    return new Date();
   }
 
   public handleCancelButtonClick() {
@@ -44,11 +50,24 @@ export class ReservationFormComponent {
 
   public onSubmit() {
     if (this.reservationForm.valid) {
-      this.toastr.success(
-        'Reservation ajoutée avec succès',
-        '',
-        toasterGlobalOptions
-      );
+      this.reservationService
+        .addReservation(this.reservationForm.value)
+        .subscribe((mockResponse: any) => {
+          if (!!mockResponse) {
+            this.toastr.success(
+              'Réservation ajoutée avec succès',
+              '',
+              toasterGlobalOptions
+            );
+            this.hideForm.emit(false);
+          } else {
+            this.toastr.error(
+              "Une erreur est survenue lors de l'ajout de la réservation",
+              '',
+              toasterGlobalOptions
+            );
+          }
+        });
     }
   }
 }

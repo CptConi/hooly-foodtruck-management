@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -20,7 +19,7 @@ const modules = [
 
 @NgModule({
   declarations: [],
-  imports: [CommonModule, ...modules],
-  exports: [...modules],
+  imports: modules,
+  exports: modules,
 })
 export class FormsModule {}
