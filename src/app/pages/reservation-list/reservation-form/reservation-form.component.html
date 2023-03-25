@@ -1,0 +1,57 @@
+<form [formGroup]="reservationForm" (ngSubmit)="onSubmit()">
+  <span>Ajout d'une réservation</span>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Food truck</mat-label>
+    <mat-select formControlName="foodTruckId">
+      <mat-option
+        *ngFor="let foodTruck of foodTrucks$ | async"
+        [value]="foodTruck.id"
+        ><span class="mat-h2"
+          >{{ foodTruck.foodType }}{{ "  " }}{{ foodTruck.name }}</span
+        ></mat-option
+      >
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>On mange quand ?</mat-label>
+    <input matInput [matDatepicker]="picker" />
+    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Adresse</mat-label>
+    <input matInput formControlName="location" />
+  </mat-form-field>
+
+  <mat-radio-group color="primary" formControlName="duration">
+    <mat-radio-button
+      class="example-radio-button"
+      *ngFor="let rsd of reservationDurationKeys"
+      [value]="rsd"
+    >
+      {{ rsd | humanize }}
+    </mat-radio-button>
+  </mat-radio-group>
+
+  <div class="form-actions">
+    <button
+      mat-stroked-button
+      color="primary"
+      (click)="handleCancelButtonClick()"
+      type="button"
+    >
+      Annuler
+    </button>
+    <button
+      mat-flat-button
+      color="primary"
+      [disabled]="reservationForm.invalid"
+      type="submit"
+    >
+      À table !
+    </button>
+  </div>
+</form>

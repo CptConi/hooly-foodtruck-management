@@ -7,7 +7,8 @@ import { toasterGlobalOptions } from 'src/app/settings/toastr.config';
 @Component({
   selector: 'app-foodtruck-form',
   templateUrl: './foodtruck-form.component.html',
-  styleUrls: ['./foodtruck-form.component.scss'],
+  // !! Important: the style file is imported in the list-forms.style.scss file
+  styleUrls: ['../../list-forms.style.scss'],
 })
 export class FoodtruckFormComponent {
   public foodtruckForm: FormGroup = new FormGroup({});

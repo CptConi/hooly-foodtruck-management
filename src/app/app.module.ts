@@ -3,12 +3,15 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 
 import { HttpClientModule } from '@angular/common/http';
+import { MatDateFnsModule } from '@angular/material-date-fns-adapter';
+import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import fr from 'date-fns/locale/fr';
 import { ToastrModule } from 'ngx-toastr';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -39,8 +42,14 @@ import { reducers } from './store/reducers';
     // Material
     MatToolbarModule,
     MatTabsModule,
+    MatDateFnsModule,
   ],
-  providers: [],
   bootstrap: [AppComponent],
+  providers: [
+    {
+      provide: MAT_DATE_LOCALE,
+      useValue: fr,
+    },
+  ],
 })
 export class AppModule {}

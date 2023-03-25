@@ -15,8 +15,8 @@
     <mat-icon>add</mat-icon>
   </button>
   <div
-    [@formVisibility]="getFormState()"
-    (@formVisibility.done)="mutateFormVisibility($event.toState === 'visible')"
+    [@folder]="getFormState()"
+    (@folder.done)="mutateFormVisibility($event.toState === 'visible')"
   >
     <app-foodtruck-form
       (hideForm)="mutateFormVisibility(false)"

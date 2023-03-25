@@ -7,5 +7,10 @@
   "date": "Date",
   "location": "Localisation",
   "duration": "Durée",
-  "foodTruck": "Food Truck"
+  "foodTruck": "Food Truck",
+  "ALLDAY": "Toute la journée",
+  "BREAKFAST": "Petit déjeuner",
+  "LUNCH": "Déjeuner",
+  "DINNER": "Dîner",
+  "SNACK": "Goûter"
 }

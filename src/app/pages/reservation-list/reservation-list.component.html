@@ -3,4 +3,23 @@
   [dataSource]="reservations$ | async"
   [paginationOptions]="[5, 15, 25, 50, 100]"
   [defaultPageSize]="15"
-></app-generic-list-page>
+>
+  <button
+    *ngIf="!isFormVisible"
+    mat-fab
+    color="primary"
+    class="list-add-button"
+    matTooltip="Ajouter une réservation"
+    (click)="handleAddButtonClick()"
+  >
+    <mat-icon>add</mat-icon>
+  </button>
+  <div
+    [@folder]="getFormState()"
+    (@folder.done)="mutateFormVisibility($event.toState === 'visible')"
+  >
+    <app-reservation-form
+      (hideForm)="mutateFormVisibility(false)"
+    ></app-reservation-form>
+  </div>
+</app-generic-list-page>
