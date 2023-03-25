@@ -1,3 +1,10 @@
+import {
+  animate,
+  state,
+  style,
+  transition,
+  trigger,
+} from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
@@ -10,12 +17,18 @@ import { selectAllFoodTrucks } from 'src/app/store/selectors/foodTruck.selectors
   selector: 'app-foodtruck-list',
   templateUrl: './foodtruck-list.component.html',
   styleUrls: ['./foodtruck-list.component.scss'],
+  animations: [
+    trigger('formVisibility', [
+      state('hidden', style({ height: '0', overflow: 'hidden', opacity: 0 })),
+      state('visible', style({ height: '*', opacity: 1 })),
+      transition('hidden => visible', animate('300ms ease-out')),
+      transition('visible => hidden', animate('300ms ease-out')),
+    ]),
+  ],
 })
 export class FoodtruckListComponent implements OnInit {
   public foodTrucks$!: Observable<FoodTruck[]>;
-  public isFormVisible = true;
-
-  public Array = Array;
+  public isFormVisible = false;
 
   constructor(private store: Store<AppState>) {}
 
@@ -25,6 +38,14 @@ export class FoodtruckListComponent implements OnInit {
   }
 
   public handleAddButtonClick() {
-    this.isFormVisible = true;
+    this.mutateFormVisibility(true);
+  }
+
+  public mutateFormVisibility(isVisible: boolean) {
+    this.isFormVisible = isVisible;
+  }
+
+  public getFormState() {
+    return this.isFormVisible ? 'visible' : 'hidden';
   }
 }

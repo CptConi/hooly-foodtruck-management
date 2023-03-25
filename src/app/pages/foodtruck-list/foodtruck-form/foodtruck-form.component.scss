@@ -10,6 +10,7 @@ form {
 
   box-shadow: $box-shadow;
   border-radius: $border-radius;
+  background-color: $background-color-light;
 
   span {
     font-size: 1.5rem;
@@ -19,5 +20,18 @@ form {
 
   mat-form-field {
     width: 100%;
+  }
+
+  ::ng-deep .mat-mdc-text-field-wrapper {
+    border-radius: 4px;
+    background-color: white !important;
+  }
+
+  .form-actions {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+    margin-top: 2rem;
   }
 }

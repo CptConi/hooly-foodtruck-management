@@ -51,6 +51,10 @@ $hooly-foodtruck-management-theme: mat.define-light-theme(
    v2.0 | 20110126
    License: none (public domain)
 */
+
+@import "ngx-toastr/toastr";
+@import "./app/vars";
+
 body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
@@ -197,6 +201,10 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
   background-color: #455a64;
+}
+
+.ngx-toastr {
+  top: calc($header-height / 2);
 }
 
 /*--------------------------- MISC ---------------------------*/

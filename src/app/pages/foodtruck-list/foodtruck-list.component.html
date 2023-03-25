@@ -14,7 +14,12 @@
   >
     <mat-icon>add</mat-icon>
   </button>
-  <ng-container *ngIf="isFormVisible"
-    ><app-foodtruck-form></app-foodtruck-form
-  ></ng-container>
+  <div
+    [@formVisibility]="getFormState()"
+    (@formVisibility.done)="mutateFormVisibility($event.toState === 'visible')"
+  >
+    <app-foodtruck-form
+      (hideForm)="mutateFormVisibility(false)"
+    ></app-foodtruck-form>
+  </div>
 </app-generic-list-page>

@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 import FoodType from 'src/app/enums/foodType.enum';
+import { toasterGlobalOptions } from 'src/app/settings/toastr.config';
 
 @Component({
   selector: 'app-foodtruck-form',
@@ -11,7 +13,9 @@ export class FoodtruckFormComponent {
   public foodtruckForm: FormGroup = new FormGroup({});
   public foodTypes: string[] = Object.values(FoodType);
 
-  constructor(private formBuilder: FormBuilder) {
+  @Output() hideForm: EventEmitter<boolean> = new EventEmitter();
+
+  constructor(private formBuilder: FormBuilder, private toastr: ToastrService) {
     this.foodtruckForm = this.formBuilder.group({
       name: ['', Validators.required],
       description: '',
@@ -20,9 +24,18 @@ export class FoodtruckFormComponent {
     });
   }
 
+  public handleCancelButtonClick() {
+    this.foodtruckForm.reset();
+    this.hideForm.emit(false);
+  }
+
   public onSubmit() {
     if (this.foodtruckForm.valid) {
-      console.log(this.foodtruckForm.value);
+      this.toastr.success(
+        'Foodtruck ajouté avec succès',
+        '',
+        toasterGlobalOptions
+      );
     }
   }
 }
