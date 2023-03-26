@@ -6,13 +6,11 @@ import {
 } from '../actions/foodTruck.actions';
 
 export interface FoodTruckState {
-  readonly foodTrucks: FoodTruck[];
-  readonly error: string;
+  readonly foodTrucks: FoodTruck[] | null;
 }
 
 export const initialFoodTruckState: FoodTruckState = {
-  foodTrucks: [],
-  error: 'Init',
+  foodTrucks: null,
 };
 
 export const foodTruckReducer = createReducer(
@@ -21,14 +19,13 @@ export const foodTruckReducer = createReducer(
     return {
       ...state,
       foodTrucks: foodTrucks,
-      error: 'Modified',
     };
   }),
   on(AddFoodTruck, (state, { foodTruck }) => {
+    const stateCopy = !!state.foodTrucks ? state.foodTrucks : [];
     return {
       ...state,
-      foodTrucks: [...state.foodTrucks, foodTruck],
-      error: 'Modified',
+      foodTrucks: [...stateCopy, foodTruck],
     };
   })
 );

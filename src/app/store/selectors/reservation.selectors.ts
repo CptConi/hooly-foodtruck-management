@@ -15,7 +15,7 @@ export const selectAllReservations = createSelector(
       return null;
     }
     return reservationsState.reservations.map((dto) =>
-      _toModel(dto, foodTruckState.foodTrucks)
+      _toModel(dto, foodTruckState.foodTrucks ?? [])
     );
   }
 );

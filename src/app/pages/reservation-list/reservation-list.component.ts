@@ -36,7 +36,7 @@ export class ReservationListComponent implements OnInit {
   ngOnInit(): void {
     this.store.dispatch(GetAllFoodTrucks());
     this.store.select(selectAllFoodTrucks).subscribe((foodTrucks) => {
-      if (foodTrucks.length > 0) {
+      if (!!foodTrucks && foodTrucks.length > 0) {
         this.store.dispatch(GetAllReservations());
       }
     });

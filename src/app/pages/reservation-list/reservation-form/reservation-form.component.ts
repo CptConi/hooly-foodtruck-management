@@ -18,7 +18,7 @@ import { selectAllFoodTrucks } from 'src/app/store/selectors/foodTruck.selectors
 })
 export class ReservationFormComponent {
   public reservationForm: FormGroup = new FormGroup({});
-  public foodTrucks$!: Observable<FoodTruck[]>;
+  public foodTrucks$!: Observable<FoodTruck[] | null>;
   public reservationDurationKeys = Object.keys(MealType);
 
   @Output() hideForm: EventEmitter<boolean> = new EventEmitter();

@@ -7,12 +7,10 @@ import {
 
 export interface ReservationState {
   readonly reservations: ReservationDTO[] | null;
-  readonly error: string;
 }
 
 export const initialReservationState: ReservationState = {
   reservations: null,
-  error: 'Init',
 };
 
 export const reservationReducer = createReducer(
@@ -21,7 +19,6 @@ export const reservationReducer = createReducer(
     return {
       ...state,
       reservations: reservations,
-      error: 'Modified',
     };
   }),
   on(AddReservation, (state, { reservation }) => {
@@ -29,7 +26,6 @@ export const reservationReducer = createReducer(
     return {
       ...state,
       reservations: [...stateCopy, reservation],
-      error: 'Modified',
     };
   })
 );

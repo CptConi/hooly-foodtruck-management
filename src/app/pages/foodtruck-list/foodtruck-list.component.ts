@@ -14,7 +14,7 @@ import { selectAllFoodTrucks } from 'src/app/store/selectors/foodTruck.selectors
   animations: [folderAnimation],
 })
 export class FoodtruckListComponent implements OnInit {
-  public foodTrucks$!: Observable<FoodTruck[]>;
+  public foodTrucks$!: Observable<FoodTruck[] | null>;
   public isFormVisible = false;
 
   constructor(private store: Store<AppState>) {}
