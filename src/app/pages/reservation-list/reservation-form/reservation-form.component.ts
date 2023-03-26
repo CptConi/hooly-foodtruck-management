@@ -37,10 +37,6 @@ export class ReservationFormComponent {
       location: ['', Validators.required],
       meal: ['', Validators.required],
     });
-
-    this.reservationForm.valueChanges.subscribe((value) => {
-      console.log(value);
-    });
   }
 
   get today() {
