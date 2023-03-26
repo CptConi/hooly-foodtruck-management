@@ -15,6 +15,7 @@
     <mat-icon>add</mat-icon>
   </button>
   <div
+    class="form-container"
     [@folder]="getFormState()"
     (@folder.done)="mutateFormVisibility($event.toState === 'visible')"
   >

@@ -1,8 +1,8 @@
 <app-generic-list-page
   [title]="'Liste des Réservations'"
   [dataSource]="reservations$ | async"
-  [paginationOptions]="[5, 15, 25, 50, 100]"
-  [defaultPageSize]="15"
+  [paginationOptions]="[5, 20, 50, 100]"
+  [defaultPageSize]="20"
 >
   <button
     *ngIf="!isFormVisible"
@@ -15,6 +15,7 @@
     <mat-icon>add</mat-icon>
   </button>
   <div
+    class="form-container"
     [@folder]="getFormState()"
     (@folder.done)="mutateFormVisibility($event.toState === 'visible')"
   >
