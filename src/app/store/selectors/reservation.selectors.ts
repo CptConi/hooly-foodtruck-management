@@ -11,6 +11,9 @@ export const selectAllReservations = createSelector(
   selectReservationsState,
   selectFoodTrucksState,
   (reservationsState, foodTruckState) => {
+    if (!reservationsState.reservations || !foodTruckState.foodTrucks) {
+      return null;
+    }
     return reservationsState.reservations.map((dto) =>
       _toModel(dto, foodTruckState.foodTrucks)
     );

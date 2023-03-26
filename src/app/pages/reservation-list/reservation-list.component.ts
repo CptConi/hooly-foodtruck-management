@@ -6,6 +6,7 @@ import { Reservation } from 'src/app/models/reservation.model';
 import { GetAllFoodTrucks } from 'src/app/store/actions/foodTruck.actions';
 import { GetAllReservations } from 'src/app/store/actions/reservation.actions';
 import { AppState } from 'src/app/store/app.state';
+import { selectAllFoodTrucks } from 'src/app/store/selectors/foodTruck.selectors';
 import { selectAllReservations } from 'src/app/store/selectors/reservation.selectors';
 
 @Component({
@@ -15,7 +16,7 @@ import { selectAllReservations } from 'src/app/store/selectors/reservation.selec
   animations: [folderAnimation],
 })
 export class ReservationListComponent implements OnInit {
-  public reservations$!: Observable<Reservation[]>;
+  public reservations$!: Observable<Reservation[] | null>;
   public isFormVisible = false;
 
   constructor(private store: Store<AppState>) {}
@@ -33,8 +34,12 @@ export class ReservationListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.store.dispatch(GetAllReservations());
     this.store.dispatch(GetAllFoodTrucks());
+    this.store.select(selectAllFoodTrucks).subscribe((foodTrucks) => {
+      if (foodTrucks.length > 0) {
+        this.store.dispatch(GetAllReservations());
+      }
+    });
     this.reservations$ = this.store.select(selectAllReservations);
   }
 }

@@ -6,12 +6,12 @@ import {
 } from '../actions/reservation.actions';
 
 export interface ReservationState {
-  readonly reservations: ReservationDTO[];
+  readonly reservations: ReservationDTO[] | null;
   readonly error: string;
 }
 
 export const initialReservationState: ReservationState = {
-  reservations: [],
+  reservations: null,
   error: 'Init',
 };
 
@@ -25,9 +25,10 @@ export const reservationReducer = createReducer(
     };
   }),
   on(AddReservation, (state, { reservation }) => {
+    const stateCopy = !!state.reservations ? state.reservations : [];
     return {
       ...state,
-      reservations: [...state.reservations, reservation],
+      reservations: [...stateCopy, reservation],
       error: 'Modified',
     };
   })

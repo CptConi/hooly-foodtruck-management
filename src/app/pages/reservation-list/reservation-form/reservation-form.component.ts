@@ -37,6 +37,10 @@ export class ReservationFormComponent {
       location: ['', Validators.required],
       meal: ['', Validators.required],
     });
+
+    this.reservationForm.valueChanges.subscribe((value) => {
+      console.log(value);
+    });
   }
 
   get today() {
@@ -48,10 +52,20 @@ export class ReservationFormComponent {
     this.hideForm.emit(false);
   }
 
+  private toDTO() {
+    return {
+      id: -1,
+      foodTruckId: this.reservationForm.value.foodTruckId,
+      date: this.reservationForm.value.date,
+      location: this.reservationForm.value.location,
+      meal: this.reservationForm.value.meal,
+    };
+  }
+
   public onSubmit() {
     if (this.reservationForm.valid) {
       this.reservationService
-        .addReservation(this.reservationForm.value)
+        .addReservation(this.toDTO())
         .subscribe((mockResponse: any) => {
           if (!!mockResponse) {
             this.toastr.success(
