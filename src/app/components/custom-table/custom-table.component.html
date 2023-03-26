@@ -7,11 +7,20 @@
       <mat-cell *matCellDef="let element">
         <ng-container [ngSwitch]="column">
           <ng-container *ngSwitchCase="'image'">
-            <img
-              class="table-thumbnail"
-              [src]="element[column]"
-              alt="food truck image"
-            />
+            <ng-container *ngIf="!!element[column]; else imagePlaceHolder">
+              <img
+                class="table-thumbnail"
+                [src]="element[column]"
+                alt="food truck image"
+              />
+            </ng-container>
+            <ng-template #imagePlaceHolder>
+              <img
+                class="table-thumbnail"
+                src="https://via.placeholder.com/150"
+                alt="food truck image"
+              />
+            </ng-template>
           </ng-container>
           <ng-container *ngSwitchCase="'name'">
             <span class="text-important">{{ element[column] }}</span>
@@ -26,7 +35,7 @@
             <span>{{ element[column] | humanize }}</span>
           </ng-container>
           <ng-container *ngSwitchCase="'foodTruck'">
-            <span>{{ element[column].name }}</span>
+            <span>{{ element[column]?.name }}</span>
           </ng-container>
           <ng-container *ngSwitchDefault>
             <span>{{ element[column] }}</span>

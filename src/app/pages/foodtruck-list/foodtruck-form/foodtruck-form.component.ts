@@ -27,7 +27,7 @@ export class FoodtruckFormComponent {
       name: ['', Validators.required],
       description: '',
       imageUrl: '',
-      foodType: '',
+      foodType: ['', Validators.required],
     });
   }
 
