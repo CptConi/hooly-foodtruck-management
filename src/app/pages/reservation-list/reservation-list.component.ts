@@ -42,4 +42,11 @@ export class ReservationListComponent implements OnInit {
     });
     this.reservations$ = this.store.select(selectAllReservations);
   }
+
+  /**
+   * Will sort columns to always have foodtruck name, then date, meal and finally localisation
+   */
+  public sortColumns(): string[] {
+    return ['foodTruck', 'date', 'meal', 'location'];
+  }
 }

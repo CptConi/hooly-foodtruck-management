@@ -8,6 +8,9 @@ import { Component, Input } from '@angular/core';
 export class GenericListPageComponent {
   @Input() public dataSource: any[] | null = [];
   @Input() public title: string = '';
+  @Input() sortColumns: (columns?: string[]) => string[] = (
+    columns?: string[]
+  ) => columns ?? [];
   @Input() public paginationOptions: number[] = [];
   @Input() public defaultPageSize: number = 10;
 }

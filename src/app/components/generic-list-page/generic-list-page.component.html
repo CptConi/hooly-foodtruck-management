@@ -5,9 +5,10 @@
 
   <ng-content></ng-content>
 
-  <ng-container *ngIf="dataSource !== null; else loading">
+  <ng-container *ngIf="!!dataSource; else loading">
     <app-custom-table
       [data]="dataSource"
+      [sortColumns]="sortColumns"
       [paginationOptions]="paginationOptions"
       [defaultPageSize]="defaultPageSize"
     ></app-custom-table>

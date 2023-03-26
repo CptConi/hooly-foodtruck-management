@@ -1,6 +1,7 @@
 <app-generic-list-page
   [title]="'Liste des Réservations'"
   [dataSource]="reservations$ | async"
+  [sortColumns]="sortColumns"
   [paginationOptions]="[5, 20, 50, 100]"
   [defaultPageSize]="20"
 >

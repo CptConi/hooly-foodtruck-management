@@ -35,4 +35,12 @@ export class FoodtruckListComponent implements OnInit {
   public getFormState() {
     return this.isFormVisible ? 'visible' : 'hidden';
   }
+
+  /**
+   * Will sort columns to always have image, name and description at the beginning and rating at the end
+   * !! Needs to be uptaded if new columns are added
+   */
+  public sortColumns(): string[] {
+    return ['image', 'name', 'description', 'foodType', 'rating'];
+  }
 }
