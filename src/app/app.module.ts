@@ -28,7 +28,14 @@ import { reducers } from './store/reducers';
     RouterModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    ToastrModule.forRoot(),
+    ToastrModule.forRoot({
+      iconClasses: {
+        error: 'toast-error',
+        info: 'toast-info',
+        success: 'toast-success',
+        warning: 'toast-warning',
+      },
+    }),
     //Store
     StoreModule.forRoot(reducers),
     EffectsModule.forRoot([FoodTruckEffects, ReservationEffects]),
