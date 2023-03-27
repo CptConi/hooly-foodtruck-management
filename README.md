@@ -7,7 +7,7 @@ A small test SPA frontend in Angular 15
 ### Back-end
 
 This project needs a backend to be fully fonctionnal. You can find a mock backend here:
-URL BACK-END.
+https://github.com/CptConi/hooly-backend.
 Follow instructions in read-me then come back here.
 
 ### Front-end
